@@ -10,18 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var employee_service_1 = require("./employee.service");
 var EmployeeListComponent = /** @class */ (function () {
-    function EmployeeListComponent() {
+    function EmployeeListComponent(_employeeService) {
+        this._employeeService = _employeeService;
         this.selectedEmployeeCountRadioButton = 'All';
-        this.employees = [
-            { code: 'emp101', name: 'Tom', gender: 'Male', annualSalary: 5500, dateOfBirth: '6/25/1988' },
-            { code: 'emp102', name: 'Alex', gender: 'Male', annualSalary: 5700.95, dateOfBirth: '9/6/1982' },
-            { code: 'emp103', name: 'Mike', gender: 'Male', annualSalary: 5900, dateOfBirth: '12/8/1979' },
-            { code: 'emp104', name: 'Mary', gender: 'Female', annualSalary: 6500.826, dateOfBirth: '10/14/1980' },
-            { code: 'emp105', name: 'Nancy', gender: 'Female', annualSalary: 6700.826, dateOfBirth: '12/15/1982' },
-            { code: 'emp105', name: 'Steve', gender: 'Male', annualSalary: 7700.481, dateOfBirth: '11/18/1979' },
-        ];
     }
+    EmployeeListComponent.prototype.ngOnInit = function () {
+        this.employees = this._employeeService.getEmployess();
+    };
     EmployeeListComponent.prototype.onEmployeeCountRadioButtonChange = function (selectedRadioButtonValue) {
         this.selectedEmployeeCountRadioButton = selectedRadioButtonValue;
     };
@@ -38,9 +35,10 @@ var EmployeeListComponent = /** @class */ (function () {
         core_1.Component({
             selector: 'list-employee',
             templateUrl: 'app/employee/employeeList.componet.html',
-            styleUrls: ['app/employee/employeeList.componet.css']
+            styleUrls: ['app/employee/employeeList.componet.css'],
+            providers: [employee_service_1.EmployeeService]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [employee_service_1.EmployeeService])
     ], EmployeeListComponent);
     return EmployeeListComponent;
 }());
